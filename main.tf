@@ -1,4 +1,12 @@
 terraform {
+  cloud {
+    organization = "Radu-Terraform-Beginner-Bootcamp-2023"
+
+    workspaces {
+      name = "terra-house-1"
+    }
+  }
+  
   required_providers {
     # https://registry.terraform.io/providers/hashicorp/random/3.5.1
     random = {

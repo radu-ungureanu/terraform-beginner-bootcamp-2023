@@ -67,3 +67,9 @@ If this file is lost, the state of the current inftrastructure is lost.
 ### Directory structure
 
 - `.terraform` - contains executables for Terraform providers used in the infrastructure.
+
+## Terraform Cloud
+
+In order to manage the state file remotely, we can use Terraform Cloud. For this, we need to create a project (optional) and a workspace (required), and to add the `cloud` configuration in our `terraform` code.
+
+In order to transfer the local state to Terraform Cloud, we need to sign in locally using the `terraform login` command. This opens up the [browser](https://app.terraform.io/app/settings/tokens) to generate a Token. This token is then pasted into the terminal, and a session is created locally, which is saved in the `C:\Users\{CURRENT_USER}\AppData\Roaming\terraform.d\credentials.tfrc.json` file
