@@ -40,10 +40,13 @@ Terraform sources their providers and modules from the Terraform registry which 
 
 We can see a list of all Terraform commands by simply typing `terraform`.
 
-- `terraform init` - at the start of a new project we need to run this command to download the binaries for the terraform providers that are used in the project
+- `terraform init` - at the start of a new project we need to run this command to download the binaries for the terraform providers that are used in the project. This needs to be ran whenever a new provider is added, to download the necessary binaries
 - `terraform plan` - generates a changeset about the state of the instrastrucutre and what will be changed
-- `terraform apply --auto-approve` - runs a plan and pass the changeset to be executed. `--auto-approve` is used to skip the prompt for the manual approval.
+- `terraform apply` - runs a plan and passes the changeset to be executed. Manual approval is required to actually create the resources
+- `terraform apply --auto-approve` - `--auto-approve` is used to skip the prompt for the manual approval
 - `terraform output`
+- `terraform destroy` - destroys all the created resources. Manual approval is required to actually destroy the resources
+- `terraform destroy --auto-approve` - `--auto-approve` is used to skip the prompt for the manual approval
 
 ### Lock files
 
