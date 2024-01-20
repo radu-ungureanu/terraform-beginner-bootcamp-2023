@@ -15,6 +15,8 @@
     - [State files](#state-files)
     - [Directory structure](#directory-structure)
   - [Terraform Cloud](#terraform-cloud)
+  - [Root Module Structure](#root-module-structure)
+  - [Loading Terraform variables](#loading-terraform-variables)
 
 ## Desired setup
 
@@ -92,4 +94,26 @@ If this file is lost, the state of the current inftrastructure is lost.
 
 In order to manage the state file remotely, we can use Terraform Cloud. For this, we need to create a project (optional) and a workspace (required), and to add the `cloud` configuration in our `terraform` code.
 
-In order to transfer the local state to Terraform Cloud, we need to sign in locally using the `terraform login` command. This opens up the [browser](https://app.terraform.io/app/settings/tokens) to generate a Token. This token is then pasted into the terminal, and a session is created locally, which is saved in the `C:\Users\{CURRENT_USER}\AppData\Roaming\terraform.d\credentials.tfrc.json` file
+In order to transfer the local state to Terraform Cloud, we need to sign in locally using the `terraform login` command. This opens up the [browser](https://app.terraform.io/app/settings/tokens) to generate a Token. This token is then pasted into the terminal, and a session is created locally, which is saved in the `C:\Users\{CURRENT_USER}\AppData\Roaming\terraform.d\credentials.tfrc.json` file.
+
+Alternatively, we can setup the token generated in Terraform Cloud into a System Variable named `TF_TOKEN_app_terraform_io`.
+
+## Root Module Structure
+
+The root module structure, based on the [official hashicorp documentation](https://developer.hashicorp.com/terraform/language/modules/develop/structure), is as follows:
+
+- PROJECT_ROOT
+  - main.tf - everything else
+  - variables.tf - stores the structure of input variables
+  - providers.tf - defines required providers and their configuration
+  - outputs.tf - stores the outputs
+  - terraform.tfvars - stores the data of variables we want to load into our terraform project
+  - README.md - required for root modules
+
+## Loading Terraform variables
+
+Locally we can have a `terraform.tfvars` file, to keep all the necessary variables. This file should not be committed to source control. An example file is under `terraform.tfvars.example`.
+
+We can use the `-var` flag to set an input variable or override a variable from tfvars, i.e. `terraform plan -var user_uuid="SOME_GUID_HERE"`.
+
+In Terraform Cloud, the required variables are added in the Variables of the Workspace.
