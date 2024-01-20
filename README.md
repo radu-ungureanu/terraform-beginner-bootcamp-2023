@@ -1,5 +1,25 @@
 # Terraform Beginner Bootcamp 2023
 
+## Table of contents
+
+- [Terraform Beginner Bootcamp 2023](#terraform-beginner-bootcamp-2023)
+  - [Table of contents](#table-of-contents)
+  - [Desired setup](#desired-setup)
+  - [Semantic Versioning](#semantic-versioning)
+  - [AWS CLI](#aws-cli)
+    - [Commands](#commands)
+  - [Terraform CLI](#terraform-cli)
+    - [Registry](#registry)
+    - [Commands](#commands-1)
+    - [Lock files](#lock-files)
+    - [State files](#state-files)
+    - [Directory structure](#directory-structure)
+  - [Terraform Cloud](#terraform-cloud)
+
+## Desired setup
+
+![setup](./images/terratown.png)
+
 ## Semantic Versioning
 
 This project is going to utilize [semantic versioning](https://semver.org/) for its tagging.
