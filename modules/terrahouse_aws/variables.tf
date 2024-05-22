@@ -48,5 +48,9 @@ variable "content_version" {
     condition     = var.content_version > 0 && floor(var.content_version) == var.content_version
     error_message = "The content_version variable must be a positive integer starting at 1"
   }
+}
 
+variable "assets_path" {
+  type        = string
+  description = "The path to the assets directory"
 }
