@@ -11,7 +11,7 @@ terraform {
 locals {
   index_html_filepath = "${path.root}/public/index.html"
   error_html_filepath = "${path.root}/public/error.html"
-  content_version     = 2
+  content_version     = 3
 }
 
 module "terrahouse_aws" {
