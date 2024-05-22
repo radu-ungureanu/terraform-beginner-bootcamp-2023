@@ -39,3 +39,14 @@ variable "error_html_filepath" {
     error_message = "The error_html_filepath variable must point to an existing file"
   }
 }
+
+variable "content_version" {
+  type        = number
+  description = "The content version. Should be a positive integer starting at 1."
+
+  validation {
+    condition     = var.content_version > 0 && floor(var.content_version) == var.content_version
+    error_message = "The content_version variable must be a positive integer starting at 1"
+  }
+
+}

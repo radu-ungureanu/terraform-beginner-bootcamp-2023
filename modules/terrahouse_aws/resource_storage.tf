@@ -18,12 +18,21 @@ resource "aws_s3_bucket_website_configuration" "website_configuration" {
   }
 }
 
+resource "terraform_data" "content_version" {
+  input = var.content_version
+}
+
 resource "aws_s3_object" "website_index" {
   bucket       = aws_s3_bucket.website_bucket.bucket
   key          = "index.html"
   content_type = "text/html"
   source       = var.index_html_filepath
   etag         = filemd5(var.index_html_filepath)
+
+  lifecycle {
+    ignore_changes       = [etag]
+    replace_triggered_by = [terraform_data.content_version.output]
+  }
 }
 
 resource "aws_s3_object" "website_error" {
@@ -32,6 +41,11 @@ resource "aws_s3_object" "website_error" {
   content_type = "text/html"
   source       = var.error_html_filepath
   etag         = filemd5(var.error_html_filepath)
+
+  lifecycle {
+    ignore_changes       = [etag]
+    replace_triggered_by = [terraform_data.content_version.output]
+  }
 }
 
 resource "aws_s3_bucket_policy" "bucket_policy" {
