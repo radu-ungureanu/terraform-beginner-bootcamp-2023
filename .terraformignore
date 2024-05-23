@@ -1,0 +1,5 @@
+**/.terraform/*
+*.example
+
+package.json
+node_modules/
